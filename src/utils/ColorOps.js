@@ -45,7 +45,9 @@ export default class ColorOps {
       this.hslObj = ColorOps.toHSL(vals);
     }
     else if (typeof color === 'object') {
-      if (color.h && color.s && color.l) {
+      if (typeof color.h !== 'undefined' &&
+        typeof color.s !== 'undefined' &&
+        typeof color.l !== 'undefined') {
         this.values = ColorOps.hslaToRgb(color);
         this.hslObj = color;
       } else {
