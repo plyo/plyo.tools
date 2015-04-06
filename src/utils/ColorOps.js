@@ -93,6 +93,14 @@ export default class ColorOps {
   }
 
   /*
+   * Return true if the lightness value of this color is greater than 55%.
+   * Note that alpha is ignored for this calculation
+   */
+  isLight() {
+    return this.hslObj.l > 0.55;
+  }
+
+  /*
    * Get the alpha component of a color
    *
    * @returns {Number} alpha
