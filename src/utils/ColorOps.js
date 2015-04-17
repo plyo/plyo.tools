@@ -1,5 +1,3 @@
-'use strict';
-
 import String from 'color-string';
 
 /*** Helper methods ***/
