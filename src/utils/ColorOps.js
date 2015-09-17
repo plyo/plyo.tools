@@ -95,7 +95,7 @@ export default class ColorOps {
    * Note that alpha is ignored for this calculation
    */
   isLight() {
-    return this.hslObj.l > 0.55;
+    return this.hslObj.l > 0.70;
   }
 
   /*
