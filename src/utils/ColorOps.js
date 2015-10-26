@@ -249,6 +249,11 @@ export default class ColorOps {
     return ColorOps.toRgbaString(this.hslObj);
   }
 
+
+  toHexString() {
+    return ColorOps.hex(this.hslObj);
+  }
+
   /**
    * Convert color values to HSL object
    * @param {Array} color
@@ -256,9 +261,9 @@ export default class ColorOps {
    */
   static toHSL(color) {
     var r = color[0] / 255,
-    g = color[1] / 255,
-    b = color[2] / 255,
-    a = color[3];
+      g = color[1] / 255,
+      b = color[2] / 255,
+      a = color[3];
 
     var max = Math.max(r, g, b), min = Math.min(r, g, b);
     var h, s, l = (max + min) / 2, d = max - min;
@@ -312,7 +317,7 @@ export default class ColorOps {
       return null;
     }
     var m2 = l <= 0.5 ? l * (s + 1) : l + s - l * s,
-    m1 = l * 2 - m2;
+      m1 = l * 2 - m2;
 
     function hue(hVal) {
       hVal = hVal < 0 ? hVal + 1 : (hVal > 1 ? hVal - 1 : hVal);
@@ -341,5 +346,13 @@ export default class ColorOps {
   static toRgbaString(hslObj) {
     let rgba = ColorOps.hslaToRgb(hslObj);
     return String.rgbString(rgba);
+  }
+
+  /*
+   * {h, s, l, a} -> '#XXXXXX'
+   */
+  static hex(hslObj) {
+    let rgba = ColorOps.hslaToRgb(hslObj);
+    return String.hexString(rgba);
   }
 }
