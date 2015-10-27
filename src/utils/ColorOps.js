@@ -42,7 +42,7 @@ export default class ColorOps {
       this.values = vals;
       this.hslObj = ColorOps.toHSL(vals);
     }
-    else if (typeof color === 'object') {
+    else if (color) {
       if (typeof color.h !== 'undefined' &&
         typeof color.s !== 'undefined' &&
         typeof color.l !== 'undefined') {
@@ -53,7 +53,7 @@ export default class ColorOps {
       }
     }
     else {
-      console.error('Constructor argument must be String or Object', color);
+      throw new Error('Constructor argument must be String or Object', color);
     }
   }
 
