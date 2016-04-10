@@ -1,4 +1,5 @@
 import String from 'color-string';
+import logger from 'logger';
 
 /*** Helper methods ***/
 function number(n) {
@@ -37,7 +38,7 @@ export default class ColorOps {
           String.getRgb(color);
 
       if (!vals) {
-        console.error('Unable to parse color from string \"' + color + '\"');
+        logger.error('Unable to parse color from string \"' + color + '\"');
       }
       this.values = vals;
       this.hslObj = ColorOps.toHSL(vals);
@@ -49,7 +50,7 @@ export default class ColorOps {
         this.values = ColorOps.hslaToRgb(color);
         this.hslObj = color;
       } else {
-        console.error('Unable to parse color from object', JSON.stringify(color));
+        logger.error('Unable to parse color from object', JSON.stringify(color));
       }
     }
     else {
