@@ -1,13 +1,12 @@
-import String from 'color-string';
+import colorString from 'color-string';
 import logger from 'logger';
 
-/*** Helper methods ***/
+// Helper methods
 function number(n) {
   if (typeof (n) === 'number') {
     return n;
-  } else {
-    return NaN;
   }
+  return NaN;
 }
 
 function clamp(val) {
@@ -33,17 +32,15 @@ export default class ColorOps {
     // parse constructor argument
     // see https://www.npmjs.com/package/color-string
     if (typeof color === 'string') {
-      let vals = String.getRgba(color) ||
-          String.getHsla(color) ||
-          String.getRgb(color);
+      const vals = colorString.get.rgb(color) ||
+        colorString.get.hsl(color);
 
       if (!vals) {
         logger.error('Unable to parse color from string \"' + color + '\"');
       }
       this.values = vals;
       this.hslObj = ColorOps.toHSL(vals);
-    }
-    else if (color) {
+    } else if (color) {
       if (typeof color.h !== 'undefined' &&
         typeof color.s !== 'undefined' &&
         typeof color.l !== 'undefined') {
@@ -345,15 +342,15 @@ export default class ColorOps {
    * {h, s, l, a} -> 'rgba(r, g, b, a)'
    */
   static toRgbaString(hslObj) {
-    let rgba = ColorOps.hslaToRgb(hslObj);
-    return String.rgbString(rgba);
+    const rgba = ColorOps.hslaToRgb(hslObj);
+    return colorString.to.rgb(rgba);
   }
 
   /*
    * {h, s, l, a} -> '#XXXXXX'
    */
   static hex(hslObj) {
-    let rgba = ColorOps.hslaToRgb(hslObj);
-    return String.hexString(rgba);
+    const rgba = ColorOps.hslaToRgb(hslObj);
+    return colorString.to.hex(rgba);
   }
 }
