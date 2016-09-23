@@ -113,8 +113,7 @@ export default class ColorOps {
     return this.hslObj.a;
   }
 
-  /** *************************
-   *
+  /***************************
    * Manipulation methods
    ***************************/
 
@@ -123,10 +122,9 @@ export default class ColorOps {
    *
    * @param {Number} amount
    * @returns CSS-compatible color string
-   *
    */
   saturate(amount, chainable) {
-    const hsl = ColorOps.toHSL(this.values);
+    var hsl = ColorOps.toHSL(this.values);
 
     hsl.s += amount / 100;
     hsl.s = clamp(hsl.s);
@@ -140,7 +138,7 @@ export default class ColorOps {
    * @returns CSS-compatible color string
    */
   desaturate(amount, chainable) {
-    const hsl = ColorOps.toHSL(this.values);
+    var hsl = ColorOps.toHSL(this.values);
 
     hsl.s -= amount / 100;
     hsl.s = clamp(hsl.s);
@@ -154,7 +152,7 @@ export default class ColorOps {
    * @returns CSS-compatible color string
    */
   lighten(amount, chainable) {
-    const hsl = ColorOps.toHSL(this.values);
+    var hsl = ColorOps.toHSL(this.values);
 
     hsl.l += amount / 100;
     hsl.l = clamp(hsl.l);
@@ -168,7 +166,7 @@ export default class ColorOps {
    * @returns CSS-compatible color string
    */
   darken(amount, chainable) {
-    const hsl = ColorOps.toHSL(this.values);
+    var hsl = ColorOps.toHSL(this.values);
 
     hsl.l -= amount / 100;
     hsl.l = clamp(hsl.l);
@@ -183,7 +181,7 @@ export default class ColorOps {
    * @returns CSS-compatible color string
    */
   fadein(amount, chainable) {
-    const hsl = ColorOps.toHSL(this.values);
+    var hsl = ColorOps.toHSL(this.values);
 
     hsl.a += amount / 100;
     hsl.a = clamp(hsl.a);
@@ -198,7 +196,7 @@ export default class ColorOps {
    * @returns CSS-compatible color string
    */
   fadeout(amount, chainable) {
-    const hsl = ColorOps.toHSL(this.values);
+    var hsl = ColorOps.toHSL(this.values);
 
     hsl.a -= amount / 100;
     hsl.a = clamp(hsl.a);
@@ -213,7 +211,7 @@ export default class ColorOps {
    * @returns CSS-compatible color string
    */
   fade(amount, chainable) {
-    const hsl = ColorOps.toHSL(this.values);
+    var hsl = ColorOps.toHSL(this.values);
 
     hsl.a = amount / 100;
     hsl.a = clamp(hsl.a);
@@ -227,8 +225,8 @@ export default class ColorOps {
    * @returns CSS-compatible color string
    */
   spin(amount, chainable) {
-    const hsl = ColorOps.toHSL(this.values);
-    const hue = (hsl.h + amount) % 360;
+    var hsl = ColorOps.toHSL(this.values);
+    var hue = (hsl.h + amount) % 360;
 
     hsl.h = hue < 0 ? 360 + hue : hue;
     return chainable ? new ColorOps(hsl) : ColorOps.toRgbaString(hsl);
@@ -241,7 +239,7 @@ export default class ColorOps {
    * @returns CSS-compatible color string
    */
   greyscale() {
-    const hsl = ColorOps.toHSL(this.values);
+    var hsl = ColorOps.toHSL(this.values);
 
     hsl.s = 0;
     return ColorOps.toRgbaString(hsl);
@@ -268,13 +266,13 @@ export default class ColorOps {
    * @returns {Object} hsla ({h, s, l, a})
    */
   static toHSL(color) {
-    const r = color[0] / 255,
+    var r = color[0] / 255,
       g = color[1] / 255,
       b = color[2] / 255,
       a = color[3];
 
-    const max = Math.max(r, g, b), min = Math.min(r, g, b);
-    const h, s, l = (max + min) / 2, d = max - min;
+    var max = Math.max(r, g, b), min = Math.min(r, g, b);
+    var h, s, l = (max + min) / 2, d = max - min;
 
     if (max === min) {
       h = s = 0;
@@ -303,7 +301,7 @@ export default class ColorOps {
    */
   static rgba(r, g, b, a) {
     // Check values are valid numbers
-    const rgb = [r, g, b].map(function (c) { return number(c); });
+    var rgb = [r, g, b].map(function (c) { return number(c); });
     a = number(a);
     if (rgb.some(isNaN) || isNaN(a)) {
       return null;
@@ -324,7 +322,7 @@ export default class ColorOps {
     if ([h, s, l, a].some(isNaN)) {
       return null;
     }
-    const m2 = l <= 0.5 ? l * (s + 1) : l + s - l * s,
+    var m2 = l <= 0.5 ? l * (s + 1) : l + s - l * s,
       m1 = l * 2 - m2;
 
     function hue(hVal) {
