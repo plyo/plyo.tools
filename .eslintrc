@@ -7,6 +7,8 @@
     "es6": true
   },
   "rules": {
-    "no-console": "off"
+    "max-len": [2, 120],
+    "no-param-reassign": [2, {"props": false}],
+    "prefer-template": [0]
   }
 }
