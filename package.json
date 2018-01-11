@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "3.1.5",
+  "version": "3.2.0",
   "name": "plyo-tools",
   "repository": "plyo/plyo.tools",
   "description": "Common tools for plyo projects",
@@ -9,8 +9,7 @@
     "babel-runtime": "^6.20.0",
     "google-auth-library": "^0.10.0",
     "googleapis": "^19.0.0",
-    "multiparty": "^4.1.3",
-    "winston": "^3.0.0-rc1"
+    "multiparty": "^4.1.3"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
