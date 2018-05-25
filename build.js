@@ -1,16 +1,39 @@
 /* eslint import/no-extraneous-dependencies: ['error', {devDependencies: true}] */
-const rimraf = require('rimraf');
-const cp = require('child_process');
-const fs = require('fs');
-const pkg = require('./package.json');
+const rimraf = require("rimraf");
+const cp = require("child_process");
+const fs = require("fs");
+const pkg = require("./package.json");
 
-rimraf.sync('build');
-cp.spawnSync('babel', ['lib', '-d', 'build/lib'], { stdio: 'inherit' });
+rimraf.sync("build");
+cp.spawnSync("babel", ["lib", "-d", "build/lib"], { stdio: "inherit" });
+cp.spawnSync("babel", ["run", "-d", "build/run"], { stdio: "inherit" });
 delete pkg.private;
 delete pkg.devDependencies;
 delete pkg.scripts;
-delete pkg['pre-commit'];
-delete pkg['lint-staged'];
-fs.writeFileSync('build/package.json', JSON.stringify(pkg, null, '  '), 'utf-8');
-fs.writeFileSync('build/LICENSE.md', fs.readFileSync('LICENSE.md', 'utf-8'), 'utf-8');
-fs.writeFileSync('build/README.md', fs.readFileSync('README.md', 'utf-8'), 'utf-8');
+delete pkg["pre-commit"];
+delete pkg["lint-staged"];
+fs.writeFileSync(
+  "build/package.json",
+  JSON.stringify(pkg, null, "  "),
+  "utf-8"
+);
+fs.writeFileSync(
+  "build/.eslintrc.js",
+  fs.readFileSync(".eslintrc.js", "utf-8"),
+  "utf-8"
+);
+fs.writeFileSync(
+  "build/lint-staged.config.js",
+  fs.readFileSync("lint-staged.config.js", "utf-8"),
+  "utf-8"
+);
+fs.writeFileSync(
+  "build/LICENSE.md",
+  fs.readFileSync("LICENSE.md", "utf-8"),
+  "utf-8"
+);
+fs.writeFileSync(
+  "build/README.md",
+  fs.readFileSync("README.md", "utf-8"),
+  "utf-8"
+);
